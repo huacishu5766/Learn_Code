@@ -1,12 +1,13 @@
-package D01_instance;
+package SparkCore.D01_instance;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class Spark03_RDD_Disk {
+public class Spark02_RDD_Memory {
     public static void main(String[] args) {
 
         final SparkConf conf = new SparkConf();
@@ -15,13 +16,16 @@ public class Spark03_RDD_Disk {
         final JavaSparkContext jsc = new JavaSparkContext(conf);
 
         // TODO 构建RDD数据处理模型
-        //      利用环境对象对接磁盘数据（文件），构建RDD对象
+        //      利用环境对象对接内存数据源，构建RDD对象
+        final List<String> names = Arrays.asList("zhangsan", "lisi", "wangwu");
 
-        // textFile方法可以传递一个参数：文件路径
-        final JavaRDD<String> rdd = jsc.textFile("D:\\idea\\classes\\bigdata-bj-classes231226\\data\\test.txt");
+        // TODO parallelize（并行）方法可以传递参数：集合
+        //      RDD数据模型存在泛型
+        final JavaRDD<String> rdd = jsc.parallelize(names);
 
         final List<String> collect = rdd.collect();
         collect.forEach(System.out::println);
+
 
         jsc.close();
 

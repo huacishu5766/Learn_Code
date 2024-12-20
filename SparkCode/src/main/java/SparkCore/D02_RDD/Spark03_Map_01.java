@@ -1,4 +1,4 @@
-package D02_RDD;
+package SparkCore.D02_RDD;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
