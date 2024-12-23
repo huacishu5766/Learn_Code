@@ -19,7 +19,7 @@ public class SparkSQL03_SQL_UDAF {
 
 
         //读取数据
-        Dataset<Row> ds = sparkSession.read().json("data/user.json");
+        Dataset<Row> ds = sparkSession.read().json("D:\\Work Space\\Learn_Code\\data\\user.json");
         ds.createOrReplaceTempView("user");
 
         //SparkSQL 采用特殊的方式将UDAF转换成UDF使用
@@ -41,49 +41,5 @@ public class SparkSQL03_SQL_UDAF {
 
         sparkSession.close();
     }
-}
-//  自定义UDAF函数，实现年龄的平均值
-//      1、实现自定义的类
-//      2、继承
-//      3、设定泛型
-// IN : 输入数据类型
-// BUFF ： 缓冲区数据类型
-// OUT ： 输出数据类型
-//      4、重写方法
-
-class MyAvgAgeUDAF extends Aggregator<Long,AvgAgeBuffer,Long> {
-    @Override
-    public AvgAgeBuffer zero() {
-        return null;
-    }
-
-    @Override
-    public AvgAgeBuffer reduce(AvgAgeBuffer b, Long a) {
-        return null;
-    }
-
-    @Override
-    public AvgAgeBuffer merge(AvgAgeBuffer b1, AvgAgeBuffer b2) {
-        return null;
-    }
-
-    @Override
-    public Long finish(AvgAgeBuffer reduction) {
-        return null;
-    }
-
-    @Override
-    public Encoder<AvgAgeBuffer> bufferEncoder() {
-        return null;
-    }
-
-    @Override
-    public Encoder<Long> outputEncoder() {
-        return null;
-    }
-}
-class AvgAgeBuffer implements Serializable {
-    public long total;
-    public long count;
 }
 
